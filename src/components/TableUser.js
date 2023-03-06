@@ -17,54 +17,87 @@ const TableUser = (props) => {
         dispatch(fetchAllUser())
     }, [])
 
+    if (isError === false && isLoading === true) {
+        return (
+            <Container>
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <div>Loading data...</div>
+                    </tbody>
+                </Table>
+            </Container>
+        )
+    }
+
+    if (isError === false && isLoading === false) {
+        return (
+            <Container>
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {
+                            listData && listData.length > 0 &&
+                            listData.map((item, index) => {
+                                return (
+                                    <tr key={`user-${index}`}>
+                                        <td>{item.id}</td>
+                                        <td>{item.email}</td>
+                                        <td>{item.username}</td>
+                                        <td>
+                                            <button className="btn btn-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </Table>
+            </Container>
+        )
+    }
+
+    if (isError === true && isLoading === false) {
+        return (
+            <Container>
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <>
+                            <div>Some thing wrong , please try again...</div>
+                        </>
+                    </tbody>
+                </Table>
+            </Container>
+        )
+    }
+
     return (
-        <Container>
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Email</th>
-                        <th>Username</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        isError === true ?
-                            <>
-                                <div>Some thing wrong , please try again...</div>
-                            </>
-                            :
-                            <>
-                                {
-                                    isLoading === true ?
-                                        <>
-                                            <div>Loading data...</div>
-                                        </>
-                                        :
-                                        <>
-                                            {
-                                                listData && listData.length > 0 &&
-                                                listData.map((item, index) => {
-                                                    return (
-                                                        <tr key={`user-${index}`}>
-                                                            <td>{item.id}</td>
-                                                            <td>{item.email}</td>
-                                                            <td>{item.username}</td>
-                                                            <td>
-                                                                <button className="btn btn-danger">Delete</button>
-                                                            </td>
-                                                        </tr>
-                                                    )
-                                                })
-                                            }
-                                        </>
-                                }
-                            </>
-                    }
-                </tbody>
-            </Table>
-        </Container>
+        <></>
     )
 }
 
