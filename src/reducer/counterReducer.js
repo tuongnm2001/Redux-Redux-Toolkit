@@ -2,11 +2,11 @@ import { INCREMENT, DECREMENT } from '../action/types';
 
 
 const INITIAL_STATE = {
-
     count: 0,
+    name: 'tuongm'
 };
 
-const reducer = (state = INITIAL_STATE, action) => {
+const countReducer = (state = INITIAL_STATE, action) => {
 
     switch (action.type) {
 
@@ -31,4 +31,4 @@ const reducer = (state = INITIAL_STATE, action) => {
 
 };
 
-export default reducer;
+export default countReducer;
