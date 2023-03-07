@@ -1,9 +1,8 @@
 import Container from "react-bootstrap/Container";
 import Table from 'react-bootstrap/Table';
-import axios from 'axios'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllUser } from "../action/actions";
+import { deleteUserRedux, fetchAllUser } from "../action/actions";
 
 const TableUser = (props) => {
 
@@ -16,6 +15,10 @@ const TableUser = (props) => {
         // fetchAllUser()
         dispatch(fetchAllUser())
     }, [])
+
+    const handleDeleteUser = (user) => {
+        dispatch(deleteUserRedux(user.id))
+    }
 
     if (isError === false && isLoading === true) {
         return (
@@ -31,7 +34,9 @@ const TableUser = (props) => {
                     </thead>
 
                     <tbody>
-                        <div>Loading data...</div>
+                        <tr>
+                            <td>Loading data...</td>
+                        </tr>
                     </tbody>
                 </Table>
             </Container>
@@ -61,7 +66,12 @@ const TableUser = (props) => {
                                         <td>{item.email}</td>
                                         <td>{item.username}</td>
                                         <td>
-                                            <button className="btn btn-danger">Delete</button>
+                                            <button
+                                                className="btn btn-danger"
+                                                onClick={() => handleDeleteUser(item)}
+                                            >
+                                                Delete
+                                            </button>
                                         </td>
                                     </tr>
                                 )
@@ -88,7 +98,9 @@ const TableUser = (props) => {
 
                     <tbody>
                         <>
-                            <div>Some thing wrong , please try again...</div>
+                            <tr>
+                                <td>Some thing wrong , please try again...</td>
+                            </tr>
                         </>
                     </tbody>
                 </Table>

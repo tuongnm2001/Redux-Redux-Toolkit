@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewUserRedux } from "../action/actions";
 
@@ -26,7 +26,7 @@ const FormAddNew = (props) => {
         <>
             <Container>
                 <Form>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-3" >
                         <Form.Label>Email address</Form.Label>
                         <Form.Control
                             type="email"
@@ -37,7 +37,7 @@ const FormAddNew = (props) => {
                         />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Group className="mb-3" >
                         <Form.Label>Password</Form.Label>
                         <Form.Control
                             type="password"
@@ -47,7 +47,7 @@ const FormAddNew = (props) => {
                         />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Group className="mb-3">
                         <Form.Label>Username</Form.Label>
                         <Form.Control
                             type="text"
